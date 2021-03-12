@@ -26,6 +26,7 @@ class ResidualLayer(nn.Module):
 
     def forward(self, x):
         print("Res layer inp:", x.shape)
+        print("After res shape:", self.res_block(x).shape)
         x = x + self.res_block(x)
         return x
 
