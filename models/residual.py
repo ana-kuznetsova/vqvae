@@ -54,10 +54,10 @@ class ResidualStack(nn.Module):
 
 if __name__ == "__main__":
     # random data
-    x = np.random.random_sample((5, 1, 39, 512))
+    x = np.random.random_sample((5, 39, 1, 512))
     x = torch.tensor(x).float()
     # test Residual Layer
-    res = ResidualLayer(1, 768, 768)
+    res = ResidualLayer(39, 768, 768)
     res_out = res(x)
     print('Res Layer out shape:', res_out.shape)
     # test res stack
