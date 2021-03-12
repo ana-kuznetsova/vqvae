@@ -17,7 +17,7 @@ class ResidualLayer(nn.Module):
         super(ResidualLayer, self).__init__()
         self.res_block = nn.Sequential(
             nn.ReLU(True),
-            nn.Conv2d(in_dim, res_h_dim, kernel_size=3,
+            nn.Conv1d(in_dim, res_h_dim, kernel_size=3,
                       stride=1, padding=1, bias=False),
             #nn.ReLU(True),
             #nn.Conv2d(res_h_dim, h_dim, kernel_size=3,
@@ -53,13 +53,13 @@ class ResidualStack(nn.Module):
 
 if __name__ == "__main__":
     # random data
-    x = np.random.random_sample((5, 1, 768, 512))
+    x = np.random.random_sample((5, 39, 512))
     x = torch.tensor(x).float()
     # test Residual Layer
-    res = ResidualLayer(1, 768, 768)
+    res = ResidualLayer(39, 768, 768)
     res_out = res(x)
-    print('Res Layer out shape:', res_out.shape)
+    #print('Res Layer out shape:', res_out.shape)
     # test res stack
-    res_stack = ResidualStack(768, 768, 768, 2)
-    res_stack_out = res_stack(x)
-    print('Res Stack out shape:', res_stack_out.shape)
+    #res_stack = ResidualStack(768, 768, 768, 2)
+    #res_stack_out = res_stack(x)
+    #print('Res Stack out shape:', res_stack_out.shape)
