@@ -47,7 +47,7 @@ class Encoder(nn.Module):
             nn.Conv1d(h_dim, h_dim, kernel_size=kernel,
                       stride=stride, padding=1),
             ResidualStack(h_dim, h_dim, res_h_dim, n_res_layers, 'conv'),
-            ResidualStack(h_dim, h_dim, res_h_dim, 4, 'lin')
+            #ResidualStack(h_dim, h_dim, res_h_dim, 4, 'lin')
         )
 
     def forward(self, x):
