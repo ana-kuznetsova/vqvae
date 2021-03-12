@@ -53,7 +53,7 @@ class Encoder(nn.Module):
 
 if __name__ == "__main__":
     # random data
-    x = np.random.random_sample((3, 40, 40, 200))
+    x = np.random.random_sample((39, 768, 2, 768))
     x = torch.tensor(x).float()
 
     # test encoder
