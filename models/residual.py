@@ -25,8 +25,6 @@ class ResidualLayer(nn.Module):
         )
 
     def forward(self, x):
-        print("Res layer inp:", x.shape)
-        print("After res shape:", self.res_block(x).shape)
         x = x + self.res_block(x)
         return x
 
@@ -62,6 +60,6 @@ if __name__ == "__main__":
     res_out = res(x)
     print('Res Layer out shape:', res_out.shape)
     # test res stack
-    #res_stack = ResidualStack(1, 768, 768, 2)
-    #res_stack_out = res_stack(x)
-    #print('Res Stack out shape:', res_stack_out.shape)
+    res_stack = ResidualStack(1, 768, 768, 2)
+    res_stack_out = res_stack(x)
+    print('Res Stack out shape:', res_stack_out.shape)
