@@ -43,10 +43,11 @@ class Encoder(nn.Module):
         self.conv_stack = nn.Sequential(
             nn.Conv1d(in_dim, h_dim, kernel_size=3,
                       stride=1, padding=1, bias=False),
-            ResidualStack(h_dim, h_dim, res_h_dim, 1),
+            ResidualStack(h_dim, h_dim, res_h_dim, 1, 'conv'),
             nn.Conv1d(h_dim, h_dim, kernel_size=kernel,
                       stride=stride, padding=1),
-            ResidualStack(h_dim, h_dim, res_h_dim, n_res_layers)
+            ResidualStack(h_dim, h_dim, res_h_dim, n_res_layers, 'conv'),
+            ResidualStack(h_dim, h_dim, res_h_dim, 4, 'lin')
         )
 
     def forward(self, x):

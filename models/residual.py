@@ -13,16 +13,20 @@ class ResidualLayer(nn.Module):
     - res_h_dim : the hidden dimension of the residual block
     """
 
-    def __init__(self, in_dim, h_dim, res_h_dim):
+    def __init__(self, in_dim, h_dim, res_h_dim, type=None):
         super(ResidualLayer, self).__init__()
-        self.res_block = nn.Sequential(
-            nn.ReLU(True),
-            nn.Conv1d(in_dim, res_h_dim, kernel_size=3,
-                      stride=1, padding=1, bias=False),
-            #nn.ReLU(True),
-            #nn.Conv2d(res_h_dim, h_dim, kernel_size=3,
-            #          stride=1, bias=False)
-        )
+        if type=='conv':
+            self.res_block = nn.Sequential(
+                nn.ReLU(True),
+                nn.Conv1d(in_dim, res_h_dim, kernel_size=3,
+                        stride=1, padding=1, bias=False),
+            )
+        elif type=='lin':
+            self.res_block = nn.Sequential(
+                nn.ReLU(True),
+                nn.Linear(h_dim, h_dim)
+            )
+
 
     def forward(self, x):
         x = x + self.res_block(x)
