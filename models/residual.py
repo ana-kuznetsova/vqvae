@@ -53,7 +53,7 @@ class ResidualStack(nn.Module):
 
 if __name__ == "__main__":
     # random data
-    x = np.random.random_sample((5, 1, 39, 512))
+    x = np.random.random_sample((5, 1, 768, 512))
     x = torch.tensor(x).float()
     # test Residual Layer
     res = ResidualLayer(1, 768, 768)
