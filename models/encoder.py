@@ -41,6 +41,7 @@ class Encoder(nn.Module):
         )
         '''
         self.conv_stack = nn.Sequential(
+            print("h_dim":h_dim, "res_h_dim:", res_h_dim, "n_res_layers", n_res_layers)
             ResidualStack(h_dim, h_dim, res_h_dim, n_res_layers),
             nn.Conv2d(in_dim, h_dim // 2, kernel_size=kernel,
                       stride=stride, padding=1),
