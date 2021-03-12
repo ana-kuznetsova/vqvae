@@ -40,10 +40,11 @@ class Encoder(nn.Module):
 
         )
         '''
-        print("h_dim",h_dim, "res_h_dim:", res_h_dim, "n_res_layers", n_res_layers)
         self.conv_stack = nn.Sequential(
-            ResidualStack(in_dim, h_dim, res_h_dim, n_res_layers),
-            nn.Conv2d(in_dim, h_dim // 2, kernel_size=kernel,
+            nn.Conv1d(in_dim, h_dim, kernel_size=3,
+                      stride=1, padding=1, bias=False),
+            ResidualStack(h_dim, h_dim, res_h_dim, 1),
+            nn.Conv1d(h_dim, h_dim // 2, kernel_size=kernel,
                       stride=stride, padding=1),
             ResidualStack(h_dim, h_dim, res_h_dim, n_res_layers)
         )
@@ -54,10 +55,10 @@ class Encoder(nn.Module):
 
 if __name__ == "__main__":
     # random data
-    x = np.random.random_sample((5, 1, 39, 1024))
+    x = np.random.random_sample((5, 39, 512))
     x = torch.tensor(x).float()
 
     # test encoder
-    encoder = Encoder(1, 768, 2, 768)
+    encoder = Encoder(39, 768, 2, 768)
     encoder_out = encoder(x)
     print('Encoder out shape:', encoder_out.shape)
