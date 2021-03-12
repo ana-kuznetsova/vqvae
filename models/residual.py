@@ -19,9 +19,9 @@ class ResidualLayer(nn.Module):
             nn.ReLU(True),
             nn.Conv1d(in_dim, res_h_dim, kernel_size=3,
                       stride=1, padding=1, bias=False),
-            nn.ReLU(True),
-            nn.Conv1d(res_h_dim, h_dim, kernel_size=3,
-                      stride=1, bias=False)
+            #nn.ReLU(True),
+            #nn.Conv1d(res_h_dim, h_dim, kernel_size=3,
+            #          stride=1, bias=False)
         )
 
     def forward(self, x):
@@ -61,6 +61,6 @@ if __name__ == "__main__":
     res_out = res(x)
     print('Res Layer out shape:', res_out.shape)
     # test res stack
-    res_stack = ResidualStack(1, 768, 768, 2)
-    res_stack_out = res_stack(x)
-    print('Res Stack out shape:', res_stack_out.shape)
+    #res_stack = ResidualStack(1, 768, 768, 2)
+    #res_stack_out = res_stack(x)
+    #print('Res Stack out shape:', res_stack_out.shape)
