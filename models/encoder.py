@@ -58,6 +58,6 @@ if __name__ == "__main__":
     x = torch.tensor(x).float()
 
     # test encoder
-    encoder = Encoder(39, 768, 2, 768)
+    encoder = Encoder(1, 768, 2, 768)
     encoder_out = encoder(x)
     print('Encoder out shape:', encoder_out.shape)
